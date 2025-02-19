@@ -114,8 +114,25 @@ class Game2048 {
     this.rotateBoard();
     this.rotateBoard();
     return moved;
-}
+  }
 
+  moveUp() {
+    this.rotateBoard();
+    let moved = this.moveRight();
+    this.rotateBoard();
+    this.rotateBoard();
+    this.rotateBoard();
+    return moved;
+  }
+
+  moveDown() {
+    this.rotateBoard();
+    this.rotateBoard();
+    this.rotateBoard();
+    let moved = this.moveRight();
+    this.rotateBoard();
+    return moved;
+  }
 }
 
 const game = new Game2048();
