@@ -6,6 +6,33 @@ const TILE_SIZE = 100;
 canvas.width = TILE_SIZE * SIZE;
 canvas.height = TILE_SIZE * SIZE;
 
+document.addEventListener("keydown", (event) => {
+    let moved = false;
+    switch (event.key) {
+        case "ArrowRight":
+        case "d":
+            moved = game.moveRight();
+            break;
+        case "ArrowLeft":
+        case "a":
+            moved = game.moveLeft();
+            break;
+        case "ArrowUp":
+        case "w":
+            moved = game.moveUp();
+            break;
+        case "ArrowDown":
+        case "s":
+            moved = game.moveDown();
+            break;
+    }
+    if (moved) {
+        game.addNewNumber();
+        game.drawBoard();
+    }
+});
+
+
 class Game2048 {
     constructor() {
         this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
