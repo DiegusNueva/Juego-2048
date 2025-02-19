@@ -133,6 +133,16 @@ class Game2048 {
     this.rotateBoard();
     return moved;
   }
+
+  rotateBoard() {
+    let newBoard = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+    for (let r = 0; r < SIZE; r++) {
+      for (let c = 0; c < SIZE; c++) {
+        newBoard[c][SIZE - 1 - r] = this.board[r][c];
+      }
+    }
+    this.board = newBoard;
+  }
 }
 
 const game = new Game2048();
