@@ -107,6 +107,15 @@ class Game2048 {
     return JSON.stringify(a) === JSON.stringify(b);
   }
 
+  moveLeft() {
+    this.rotateBoard(); // Rota 180 grados
+    this.rotateBoard();
+    let moved = this.moveRight(); // Reutiliza moveRight()
+    this.rotateBoard();
+    this.rotateBoard();
+    return moved;
+}
+
 }
 
 const game = new Game2048();
