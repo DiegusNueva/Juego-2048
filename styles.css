@@ -14,4 +14,8 @@ canvas {
 
 h1{
     padding-top: 2rem;
+    font-family: "Orbitron", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
 }
