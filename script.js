@@ -101,6 +101,7 @@ class Game2048 {
         if (newRow[c] === newRow[c - 1]) {
           // Si dos números son iguales
           newRow[c] *= 2;
+          this.score += newRow[c]; // SUMA PUNTOS
           newRow[c - 1] = 0; // Elimina el duplicado
           moved = true;
         }
@@ -110,6 +111,7 @@ class Game2048 {
       if (!this.arraysEqual(this.board[r], newRow)) moved = true;
       this.board[r] = newRow;
     }
+    this.updateScore();
     return moved;
   }
 
