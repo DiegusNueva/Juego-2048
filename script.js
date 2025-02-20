@@ -1,13 +1,28 @@
 const bgMusic = document.getElementById("bgMusic");
+let musicStarted = false; // Bandera para evitar múltiples reproducciones
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+
+// 🎵 Lista de canciones disponibles
+const songs = [
+    "audio/Twin Musicom - 8 Bit March (Dramatic).mp3",
+    "audio/Pixelland.mp3"
+];
 function playMusic() {
-    bgMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
-    bgMusic.play().catch(error => console.log("Autoplay bloqueado"));
+    if (!musicStarted) { // Solo inicia la música si aún no ha empezado
+        const randomSong = songs[Math.floor(Math.random() * songs.length)]; // Elige una canción aleatoria
+        bgMusic.src = randomSong; // Asigna la canción al <audio>
+        bgMusic.volume = 0.5; // Ajusta el volumen
+        bgMusic.loop = true;  // Activa el bucle
+        bgMusic.play().catch(error => console.log("Autoplay bloqueado"));
+        musicStarted = true; // Evita reinicios
+    }
 }
 
-document.addEventListener("click", () => playMusic()); // Se activa con un clic (para evitar bloqueos en móviles)
+// ✅ Se activa si el usuario hace clic o pulsa una tecla
+document.addEventListener("click", () => playMusic());
+document.addEventListener("keydown", () => playMusic()); // Se activa con un clic (para evitar bloqueos en móviles)
 
 const SIZE = 4; // Tablero de 4x4
 const TILE_SIZE = 100;
