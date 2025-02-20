@@ -6,6 +6,9 @@ const TILE_SIZE = 100;
 canvas.width = TILE_SIZE * SIZE;
 canvas.height = TILE_SIZE * SIZE;
 
+document.getElementById("restartBtn").addEventListener("click", () => {
+  game.restart();
+});
 document.addEventListener("keydown", (event) => {
   let moved = false;
   switch (event.key) {
