@@ -39,9 +39,15 @@ document.addEventListener("keydown", (event) => {
 class Game2048 {
   constructor() {
     this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+    this.score = 0;
     this.addNewNumber();
     this.addNewNumber();
     this.drawBoard();
+    this.updateScore();
+  }
+
+  updateScore() {
+    document.getElementById("score").textContent = this.score;
   }
 
   addNewNumber() {
