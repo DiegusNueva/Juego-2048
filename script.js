@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const SIZE = 3; // Tablero de 3x3
+const SIZE = 4; // Tablero de 4x4
 const TILE_SIZE = 100;
 canvas.width = TILE_SIZE * SIZE;
 canvas.height = TILE_SIZE * SIZE;
