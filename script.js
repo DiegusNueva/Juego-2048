@@ -143,6 +143,25 @@ class Game2048 {
     }
     this.board = newBoard;
   }
+
+  isBoardFull() {
+    return this.board.every((row) => row.every((cell) => cell !== 0));
+  }
+
+  hasValidMoves() {
+    for (let r = 0; r < SIZE; r++) {
+      for (let c = 0; c < SIZE; c++) {
+        let current = this.board[r][c];
+
+        if (current === 0) return true; // Si hay un 0, aún hay espacio
+
+        // Verifica derecha y abajo (para evitar doble comprobación)
+        if (c < SIZE - 1 && current === this.board[r][c + 1]) return true;
+        if (r < SIZE - 1 && current === this.board[r + 1][c]) return true;
+      }
+    }
+    return false; // No hay movimientos válidos
+  }
 }
 
 const game = new Game2048();
