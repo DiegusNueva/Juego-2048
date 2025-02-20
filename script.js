@@ -35,6 +35,11 @@ document.addEventListener("keydown", (event) => {
       game.addNewNumber();
       game.drawBoard();
 
+      if (game.hasWon()) {
+        setTimeout(() => alert("🎉 ¡Has ganado! 🎉"), 100);
+        return; // Detiene la ejecución para evitar agregar otro número
+      }
+
       if (game.isBoardFull() && !game.hasValidMoves()) {
         setTimeout(
           () => alert("¡Juego terminado! No hay más movimientos."),
