@@ -125,6 +125,7 @@ class Game2048 {
     let moved = this.moveRight(); // Reutiliza moveRight()
     this.rotateBoard();
     this.rotateBoard();
+    this.updateScore();
     return moved;
   }
 
@@ -134,6 +135,7 @@ class Game2048 {
     this.rotateBoard();
     this.rotateBoard();
     this.rotateBoard();
+    this.updateScore();
     return moved;
   }
 
@@ -143,6 +145,7 @@ class Game2048 {
     this.rotateBoard();
     let moved = this.moveRight();
     this.rotateBoard();
+    this.updateScore();
     return moved;
   }
 
