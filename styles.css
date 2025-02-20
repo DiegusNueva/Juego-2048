@@ -19,3 +19,30 @@ h1{
     font-weight: 700;
     font-style: normal;
 }
+
+#touchControls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#touchControls div {
+    display: flex;
+    gap: 10px;
+}
+
+#touchControls button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border: none;
+    background-color: #8f7a66;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#touchControls button:active {
+    background-color: #6c5b4d;
+}

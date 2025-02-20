@@ -9,6 +9,19 @@ canvas.height = TILE_SIZE * SIZE;
 document.getElementById("restartBtn").addEventListener("click", () => {
   game.restart();
 });
+
+document
+  .getElementById("upBtn")
+  .addEventListener("click", () => handleMove("ArrowUp"));
+document
+  .getElementById("downBtn")
+  .addEventListener("click", () => handleMove("ArrowDown"));
+document
+  .getElementById("leftBtn")
+  .addEventListener("click", () => handleMove("ArrowLeft"));
+document
+  .getElementById("rightBtn")
+  .addEventListener("click", () => handleMove("ArrowRight"));
 document.addEventListener("keydown", (event) => {
   let oldBoard = JSON.parse(JSON.stringify(game.board)); // Guardamos el estado previo
   let moved = false;
