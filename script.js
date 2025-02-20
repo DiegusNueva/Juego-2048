@@ -50,6 +50,15 @@ class Game2048 {
     document.getElementById("score").textContent = this.score;
   }
 
+  restart() {
+    this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0)); // Limpia el tablero
+    this.score = 0; // Reinicia la puntuación
+    this.addNewNumber();
+    this.addNewNumber();
+    this.drawBoard();
+    this.updateScore();
+  }
+
   addNewNumber() {
     let emptyTiles = [];
     for (let r = 0; r < SIZE; r++) {
