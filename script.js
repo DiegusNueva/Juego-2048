@@ -105,6 +105,50 @@ class Game2048 {
     }
   }
 
+  animateMove(oldBoard, newBoard, callback) {
+    let frames = 10; // Duración de la animación
+    let step = 1 / frames;
+    let progress = 0;
+
+    const animate = () => {
+      progress += step;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let r = 0; r < SIZE; r++) {
+        for (let c = 0; c < SIZE; c++) {
+          let oldVal = oldBoard[r][c];
+          let newVal = newBoard[r][c];
+
+          if (oldVal !== 0 && newVal === 0) continue; // Evita dibujar números eliminados
+
+          let offsetX = 0,
+            offsetY = 0;
+          if (oldVal !== newVal && oldVal !== 0) {
+            // Si el número ha cambiado
+            offsetX =
+              (c - this.findOldPos(oldBoard, oldVal, r, c).c) *
+              TILE_SIZE *
+              (1 - progress);
+            offsetY =
+              (r - this.findOldPos(oldBoard, oldVal, r, c).r) *
+              TILE_SIZE *
+              (1 - progress);
+          }
+
+          this.drawTile(r, c, newVal, offsetX, offsetY);
+        }
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        callback();
+      }
+    };
+
+    animate();
+  }
+
   moveRight() {
     let moved = false;
     for (let r = 0; r < SIZE; r++) {
