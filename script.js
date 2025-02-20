@@ -1,5 +1,13 @@
+const bgMusic = document.getElementById("bgMusic");
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+
+function playMusic() {
+    bgMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
+    bgMusic.play().catch(error => console.log("Autoplay bloqueado"));
+}
+
+document.addEventListener("click", () => playMusic()); // Se activa con un clic (para evitar bloqueos en móviles)
 
 const SIZE = 4; // Tablero de 4x4
 const TILE_SIZE = 100;
