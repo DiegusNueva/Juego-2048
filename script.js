@@ -149,6 +149,17 @@ class Game2048 {
     animate();
   }
 
+  findOldPos(oldBoard, value, row, col) {
+    for (let r = 0; r < SIZE; r++) {
+      for (let c = 0; c < SIZE; c++) {
+        if (oldBoard[r][c] === value) {
+          return { r, c };
+        }
+      }
+    }
+    return { r: row, c: col };
+  }
+
   moveRight() {
     let moved = false;
     for (let r = 0; r < SIZE; r++) {
