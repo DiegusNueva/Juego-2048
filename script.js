@@ -10,6 +10,7 @@ document.getElementById("restartBtn").addEventListener("click", () => {
   game.restart();
 });
 document.addEventListener("keydown", (event) => {
+  let oldBoard = JSON.parse(JSON.stringify(game.board)); // Guardamos el estado previo
   let moved = false;
   switch (event.key) {
     case "ArrowRight":
@@ -30,8 +31,10 @@ document.addEventListener("keydown", (event) => {
       break;
   }
   if (moved) {
-    game.addNewNumber();
-    game.drawBoard();
+    game.animateMove(oldBoard, game.board, () => {
+      game.addNewNumber();
+      game.drawBoard();
+    });
 
     if (game.isBoardFull() && !game.hasValidMoves()) {
       setTimeout(() => alert("¡Juego terminado! No hay más movimientos."), 100);
