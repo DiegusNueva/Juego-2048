@@ -63,6 +63,42 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+function handleMove(direction) {
+    let oldBoard = JSON.parse(JSON.stringify(game.board));
+    let moved = false;
+
+    switch (direction) {
+        case "ArrowRight":
+            moved = game.moveRight();
+            break;
+        case "ArrowLeft":
+            moved = game.moveLeft();
+            break;
+        case "ArrowUp":
+            moved = game.moveUp();
+            break;
+        case "ArrowDown":
+            moved = game.moveDown();
+            break;
+    }
+
+    if (moved) {
+        game.animateMove(oldBoard, game.board, () => {
+            game.addNewNumber();
+            game.drawBoard();
+
+            if (game.hasWon()) {
+                setTimeout(() => alert("🎉 ¡Has ganado! 🎉"), 100);
+                return;
+            }
+
+            if (game.isBoardFull() && !game.hasValidMoves()) {
+                setTimeout(() => alert("¡Juego terminado! No hay más movimientos."), 100);
+            }
+        });
+    }
+}
+
 class Game2048 {
   constructor() {
     this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
