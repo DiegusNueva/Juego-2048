@@ -81,6 +81,10 @@ class Game2048 {
     }
   }
 
+  hasWon() {
+    return this.board.some((row) => row.some((cell) => cell === 2048));
+  }
+
   drawBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let r = 0; r < SIZE; r++) {
