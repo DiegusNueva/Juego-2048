@@ -29,6 +29,10 @@ document.addEventListener("keydown", (event) => {
   if (moved) {
     game.addNewNumber();
     game.drawBoard();
+
+    if (game.isBoardFull() && !game.hasValidMoves()) {
+      setTimeout(() => alert("¡Juego terminado! No hay más movimientos."), 100);
+    }
   }
 });
 
