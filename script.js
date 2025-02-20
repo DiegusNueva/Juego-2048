@@ -84,11 +84,11 @@ class Game2048 {
     }
   }
 
-  drawTile(row, col, value) {
+  drawTile(row, col, value, offsetX = 0, offsetY = 0) {
     ctx.fillStyle = value ? "#eee4da" : "#cdc1b4";
     ctx.fillRect(
-      col * TILE_SIZE,
-      row * TILE_SIZE,
+      col * TILE_SIZE + offsetX,
+      row * TILE_SIZE + offsetY,
       TILE_SIZE - 5,
       TILE_SIZE - 5
     );
