@@ -57,11 +57,13 @@ document.addEventListener("keydown", (event) => {
       game.drawBoard();
 
       if (game.hasWon()) {
+        document.getElementById("gameCanvas").style.background = "#228B22"; // Verde oscuro
         setTimeout(() => alert("🎉 ¡Has ganado! 🎉"), 100);
         return; // Detiene la ejecución para evitar agregar otro número
       }
 
       if (game.isBoardFull() && !game.hasValidMoves()) {
+        document.getElementById("gameCanvas").style.background = "#8b0000"; // Rojo oscuro
         setTimeout(
           () => alert("¡Juego terminado! No hay más movimientos."),
           100
@@ -96,11 +98,13 @@ function handleMove(direction) {
             game.drawBoard();
 
             if (game.hasWon()) {
+                document.getElementById("gameCanvas").style.background = "#228B22"; // Verde oscuro
                 setTimeout(() => alert("🎉 ¡Has ganado! 🎉"), 100);
                 return;
             }
 
             if (game.isBoardFull() && !game.hasValidMoves()) {
+                document.getElementById("gameCanvas").style.background = "#8b0000"; // Rojo oscuro
                 setTimeout(() => alert("¡Juego terminado! No hay más movimientos."), 100);
             }
         });
@@ -128,6 +132,7 @@ class Game2048 {
     this.addNewNumber();
     this.drawBoard();
     this.updateScore();
+    document.getElementById("gameCanvas").style.background = "#bbada0"; // Color original
   }
 
   addNewNumber() {
