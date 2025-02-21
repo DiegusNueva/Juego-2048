@@ -1,7 +1,12 @@
 import { songs } from "../main.js";
 
-let musicStarted = false; // Se maneja localmente
+let musicStarted = false;
 
+/**
+ * Reproduce música de fondo aleatoria cuando se hace clic o se presiona una tecla.
+ * La música se selecciona de una lista de canciones predefinidas y se reproduce en un bucle
+ * con un volumen del 50%. Si la reproducción automática está bloqueada, se captura el error.
+ */
 export default function playMusic() {
   if (!musicStarted) {
     const randomSong = songs[Math.floor(Math.random() * songs.length)];
@@ -9,6 +14,6 @@ export default function playMusic() {
     bgMusic.volume = 0.5;
     bgMusic.loop = true;
     bgMusic.play().catch((error) => console.log("Autoplay bloqueado"));
-    musicStarted = true; // Se actualiza solo dentro del módulo
+    musicStarted = true;
   }
 }
