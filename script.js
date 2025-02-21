@@ -3,32 +3,31 @@ let musicStarted = false; // Bandera para evitar múltiples reproducciones
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-
-// 🎵 Lista de canciones disponibles
-const songs = [
-    "audio/Twin Musicom - 8 Bit March (Dramatic).mp3",
-    "audio/Pixelland.mp3"
-];
-function playMusic() {
-    if (!musicStarted) { // Solo inicia la música si aún no ha empezado
-        const randomSong = songs[Math.floor(Math.random() * songs.length)]; // Elige una canción aleatoria
-        bgMusic.src = randomSong; // Asigna la canción al <audio>
-        bgMusic.volume = 0.5; // Ajusta el volumen
-        bgMusic.loop = true;  // Activa el bucle
-        bgMusic.play().catch(error => console.log("Autoplay bloqueado"));
-        musicStarted = true; // Evita reinicios
-    }
-}
-
-// ✅ Se activa si el usuario hace clic o pulsa una tecla
-document.addEventListener("click", () => playMusic());
-document.addEventListener("keydown", () => playMusic()); // Se activa con un clic (para evitar bloqueos en móviles)
-
 const SIZE = 4; // Tablero de 4x4
 const TILE_SIZE = 100;
 canvas.width = TILE_SIZE * SIZE;
 canvas.height = TILE_SIZE * SIZE;
 
+// 🎵 Lista de canciones disponibles
+const songs = [
+  "audio/Twin Musicom - 8 Bit March (Dramatic).mp3",
+  "audio/Pixelland.mp3",
+];
+function playMusic() {
+  if (!musicStarted) {
+    // Solo inicia la música si aún no ha empezado
+    const randomSong = songs[Math.floor(Math.random() * songs.length)]; // Elige una canción aleatoria
+    bgMusic.src = randomSong; // Asigna la canción al <audio>
+    bgMusic.volume = 0.5; // Ajusta el volumen
+    bgMusic.loop = true; // Activa el bucle
+    bgMusic.play().catch((error) => console.log("Autoplay bloqueado"));
+    musicStarted = true; // Evita reinicios
+  }
+}
+
+// ✅ Se activa si el usuario hace clic o pulsa una tecla
+document.addEventListener("click", () => playMusic());
+document.addEventListener("keydown", () => playMusic()); // Se activa con un clic (para evitar bloqueos en móviles)
 document.getElementById("restartBtn").addEventListener("click", () => {
   game.restart();
 });
@@ -46,26 +45,28 @@ document
   .getElementById("rightBtn")
   .addEventListener("click", () => handleMove("ArrowRight"));
 document.addEventListener("keydown", (event) => {
-  let oldBoard = JSON.parse(JSON.stringify(game.board)); // Guardamos el estado previo
+  handleMove(event.key);
+});
+
+function handleMove(direction) {
+  let oldBoard = JSON.parse(JSON.stringify(game.board));
   let moved = false;
-  switch (event.key) {
+
+  switch (direction) {
     case "ArrowRight":
-    case "d":
       moved = game.moveRight();
       break;
     case "ArrowLeft":
-    case "a":
       moved = game.moveLeft();
       break;
     case "ArrowUp":
-    case "w":
       moved = game.moveUp();
       break;
     case "ArrowDown":
-    case "s":
       moved = game.moveDown();
       break;
   }
+
   if (moved) {
     game.animateMove(oldBoard, game.board, () => {
       game.addNewNumber();
@@ -74,7 +75,7 @@ document.addEventListener("keydown", (event) => {
       if (game.hasWon()) {
         document.getElementById("gameCanvas").style.background = "#228B22"; // Verde oscuro
         setTimeout(() => alert("🎉 ¡Has ganado! 🎉"), 100);
-        return; // Detiene la ejecución para evitar agregar otro número
+        return;
       }
 
       if (game.isBoardFull() && !game.hasValidMoves()) {
@@ -86,44 +87,6 @@ document.addEventListener("keydown", (event) => {
       }
     });
   }
-});
-
-function handleMove(direction) {
-    let oldBoard = JSON.parse(JSON.stringify(game.board));
-    let moved = false;
-
-    switch (direction) {
-        case "ArrowRight":
-            moved = game.moveRight();
-            break;
-        case "ArrowLeft":
-            moved = game.moveLeft();
-            break;
-        case "ArrowUp":
-            moved = game.moveUp();
-            break;
-        case "ArrowDown":
-            moved = game.moveDown();
-            break;
-    }
-
-    if (moved) {
-        game.animateMove(oldBoard, game.board, () => {
-            game.addNewNumber();
-            game.drawBoard();
-
-            if (game.hasWon()) {
-                document.getElementById("gameCanvas").style.background = "#228B22"; // Verde oscuro
-                setTimeout(() => alert("🎉 ¡Has ganado! 🎉"), 100);
-                return;
-            }
-
-            if (game.isBoardFull() && !game.hasValidMoves()) {
-                document.getElementById("gameCanvas").style.background = "#8b0000"; // Rojo oscuro
-                setTimeout(() => alert("¡Juego terminado! No hay más movimientos."), 100);
-            }
-        });
-    }
 }
 
 class Game2048 {
