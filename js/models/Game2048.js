@@ -4,6 +4,7 @@ export default class Game2048 {
   constructor() {
     this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
     this.score = 0;
+    this.maxScore = parseInt(localStorage.getItem("maxScore")) || 0;
     this.addNewNumber();
     this.addNewNumber();
     this.drawBoard();
@@ -13,7 +14,13 @@ export default class Game2048 {
   // Actualiza el puntaje en la pantalla
   updateScore = () => {
     document.getElementById("score").textContent = this.score;
-  }
+
+    // Si la puntuación actual es mayor que la máxima, actualízala en el localStorage
+    if (this.score > this.maxScore) {
+      this.maxScore = this.score;
+      localStorage.setItem("maxScore", this.maxScore); // Guardar la nueva puntuación máxima
+    }
+  };
 
   // Reinicia el juego: limpia el tablero y restablece la puntuación
   restart = () => {
@@ -24,7 +31,7 @@ export default class Game2048 {
     this.drawBoard();
     this.updateScore();
     document.getElementById("gameCanvas").style.background = "#bbada0";
-  }
+  };
 
   // Añade un nuevo número (2) en una celda vacía aleatoria
   addNewNumber = () => {
@@ -38,12 +45,12 @@ export default class Game2048 {
       let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
       this.board[r][c] = 2;
     }
-  }
+  };
 
   // Verifica si el jugador ha ganado (si existe un 2048 en el tablero)
   hasWon = () => {
     return this.board.some((row) => row.some((cell) => cell === 2048));
-  }
+  };
 
   // Dibuja el tablero y las fichas
   drawBoard = () => {
@@ -53,7 +60,7 @@ export default class Game2048 {
         this.drawTile(r, c, this.board[r][c]);
       }
     }
-  }
+  };
 
   // Dibuja una ficha en la posición (row, col) con el valor correspondiente
   drawTile = (row, col, value, offsetX = 0, offsetY = 0) => {
@@ -75,7 +82,7 @@ export default class Game2048 {
         row * TILE_SIZE + TILE_SIZE / 2
       );
     }
-  }
+  };
 
   // Anima el movimiento de las fichas con una transición suave
   animateMove = (oldBoard, newBoard, callback) => {
@@ -119,7 +126,7 @@ export default class Game2048 {
     };
 
     animate();
-  }
+  };
 
   // Encuentra la posición antigua de un valor específico en el tablero
   findOldPos = (oldBoard, value, row, col) => {
@@ -131,7 +138,7 @@ export default class Game2048 {
       }
     }
     return { r: row, c: col };
-  }
+  };
 
   // Mueve las fichas hacia la derecha y combina las iguales
   moveRight = () => {
@@ -153,12 +160,12 @@ export default class Game2048 {
     }
     this.updateScore();
     return moved;
-  }
+  };
 
   // Compara dos arreglos para ver si son iguales
   arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
-  }
+  };
 
   // Mueve las fichas hacia la izquierda, reutilizando el método moveRight() con rotaciones
   moveLeft = () => {
@@ -169,7 +176,7 @@ export default class Game2048 {
     this.rotateBoard();
     this.updateScore();
     return moved;
-  }
+  };
 
   // Mueve las fichas hacia arriba, reutilizando el método moveRight() con rotaciones
   moveUp = () => {
@@ -180,7 +187,7 @@ export default class Game2048 {
     this.rotateBoard();
     this.updateScore();
     return moved;
-  }
+  };
 
   // Mueve las fichas hacia abajo, reutilizando el método moveRight() con rotaciones
   moveDown = () => {
@@ -191,7 +198,7 @@ export default class Game2048 {
     this.rotateBoard();
     this.updateScore();
     return moved;
-  }
+  };
 
   // Rota el tablero 90 grados en sentido horario
   rotateBoard = () => {
@@ -202,12 +209,12 @@ export default class Game2048 {
       }
     }
     this.board = newBoard;
-  }
+  };
 
   // Verifica si el tablero está lleno
   isBoardFull = () => {
     return this.board.every((row) => row.every((cell) => cell !== 0));
-  }
+  };
 
   // Verifica si hay movimientos válidos disponibles
   hasValidMoves = () => {
@@ -222,5 +229,5 @@ export default class Game2048 {
       }
     }
     return false;
-  }
+  };
 }

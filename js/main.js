@@ -25,14 +25,31 @@ document.addEventListener("click", () => playMusic());
 document.addEventListener("keydown", () => playMusic());
 
 // 🎮 Configuración de los botones del juego
-document.getElementById("restartBtn").addEventListener("click", () => {game.restart();});
-document.getElementById("upBtn").addEventListener("click", () => handleMove("ArrowUp"));
-document.getElementById("downBtn").addEventListener("click", () => handleMove("ArrowDown"));
-document.getElementById("leftBtn").addEventListener("click", () => handleMove("ArrowLeft"));
-document.getElementById("rightBtn").addEventListener("click", () => handleMove("ArrowRight"));
+document.getElementById("restartBtn").addEventListener("click", () => {
+  game.restart();
+  const maxScore = localStorage.getItem("maxScore") || 0;
+  document.getElementById("maxScore").textContent = maxScore;
+});
+document
+  .getElementById("upBtn")
+  .addEventListener("click", () => handleMove("ArrowUp"));
+document
+  .getElementById("downBtn")
+  .addEventListener("click", () => handleMove("ArrowDown"));
+document
+  .getElementById("leftBtn")
+  .addEventListener("click", () => handleMove("ArrowLeft"));
+document
+  .getElementById("rightBtn")
+  .addEventListener("click", () => handleMove("ArrowRight"));
 
 // 🎮 Movimiento mediante teclas del teclado
-document.addEventListener("keydown", (event) => {handleMove(event.key);});
+document.addEventListener("keydown", (event) => {
+  handleMove(event.key);
+});
 
 // Inicialización del juego
 export const game = new Game2048();
+
+// Puntuación máxima guardada en el localStorage
+document.getElementById("maxScore").textContent = game.maxScore;
