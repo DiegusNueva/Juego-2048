@@ -1,4 +1,4 @@
-# Juego 2048 - JavaScript
+# Juego 2048 - JavaScript (by dιegυѕ)
 
 Este es un proyecto simple de **2048** creado con HTML, CSS y JavaScript. Es un juego de lógica en el que debes mover los números en un tablero de 3x3 para combinarlos y obtener el número más alto posible. El juego termina cuando no hay más movimientos disponibles.
 
