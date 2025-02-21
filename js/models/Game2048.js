@@ -11,12 +11,12 @@ export default class Game2048 {
   }
 
   // Actualiza el puntaje en la pantalla
-  updateScore() {
+  updateScore = () => {
     document.getElementById("score").textContent = this.score;
   }
 
   // Reinicia el juego: limpia el tablero y restablece la puntuación
-  restart() {
+  restart = () => {
     this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
     this.score = 0;
     this.addNewNumber();
@@ -27,7 +27,7 @@ export default class Game2048 {
   }
 
   // Añade un nuevo número (2) en una celda vacía aleatoria
-  addNewNumber() {
+  addNewNumber = () => {
     let emptyTiles = [];
     for (let r = 0; r < SIZE; r++) {
       for (let c = 0; c < SIZE; c++) {
@@ -41,12 +41,12 @@ export default class Game2048 {
   }
 
   // Verifica si el jugador ha ganado (si existe un 2048 en el tablero)
-  hasWon() {
+  hasWon = () => {
     return this.board.some((row) => row.some((cell) => cell === 2048));
   }
 
   // Dibuja el tablero y las fichas
-  drawBoard() {
+  drawBoard = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let r = 0; r < SIZE; r++) {
       for (let c = 0; c < SIZE; c++) {
@@ -56,7 +56,7 @@ export default class Game2048 {
   }
 
   // Dibuja una ficha en la posición (row, col) con el valor correspondiente
-  drawTile(row, col, value, offsetX = 0, offsetY = 0) {
+  drawTile = (row, col, value, offsetX = 0, offsetY = 0) => {
     ctx.fillStyle = value ? "#eee4da" : "#cdc1b4";
     ctx.fillRect(
       col * TILE_SIZE + offsetX,
@@ -78,7 +78,7 @@ export default class Game2048 {
   }
 
   // Anima el movimiento de las fichas con una transición suave
-  animateMove(oldBoard, newBoard, callback) {
+  animateMove = (oldBoard, newBoard, callback) => {
     let frames = 10;
     let step = 1 / frames;
     let progress = 0;
@@ -122,7 +122,7 @@ export default class Game2048 {
   }
 
   // Encuentra la posición antigua de un valor específico en el tablero
-  findOldPos(oldBoard, value, row, col) {
+  findOldPos = (oldBoard, value, row, col) => {
     for (let r = 0; r < SIZE; r++) {
       for (let c = 0; c < SIZE; c++) {
         if (oldBoard[r][c] === value) {
@@ -134,7 +134,7 @@ export default class Game2048 {
   }
 
   // Mueve las fichas hacia la derecha y combina las iguales
-  moveRight() {
+  moveRight = () => {
     let moved = false;
     for (let r = 0; r < SIZE; r++) {
       let newRow = this.board[r].filter((val) => val);
@@ -156,12 +156,12 @@ export default class Game2048 {
   }
 
   // Compara dos arreglos para ver si son iguales
-  arraysEqual(a, b) {
+  arraysEqual = (a, b) => {
     return JSON.stringify(a) === JSON.stringify(b);
   }
 
   // Mueve las fichas hacia la izquierda, reutilizando el método moveRight() con rotaciones
-  moveLeft() {
+  moveLeft = () => {
     this.rotateBoard();
     this.rotateBoard();
     let moved = this.moveRight();
@@ -172,7 +172,7 @@ export default class Game2048 {
   }
 
   // Mueve las fichas hacia arriba, reutilizando el método moveRight() con rotaciones
-  moveUp() {
+  moveUp = () => {
     this.rotateBoard();
     let moved = this.moveRight();
     this.rotateBoard();
@@ -183,7 +183,7 @@ export default class Game2048 {
   }
 
   // Mueve las fichas hacia abajo, reutilizando el método moveRight() con rotaciones
-  moveDown() {
+  moveDown = () => {
     this.rotateBoard();
     this.rotateBoard();
     this.rotateBoard();
@@ -194,7 +194,7 @@ export default class Game2048 {
   }
 
   // Rota el tablero 90 grados en sentido horario
-  rotateBoard() {
+  rotateBoard = () => {
     let newBoard = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
     for (let r = 0; r < SIZE; r++) {
       for (let c = 0; c < SIZE; c++) {
@@ -205,12 +205,12 @@ export default class Game2048 {
   }
 
   // Verifica si el tablero está lleno
-  isBoardFull() {
+  isBoardFull = () => {
     return this.board.every((row) => row.every((cell) => cell !== 0));
   }
 
   // Verifica si hay movimientos válidos disponibles
-  hasValidMoves() {
+  hasValidMoves = () => {
     for (let r = 0; r < SIZE; r++) {
       for (let c = 0; c < SIZE; c++) {
         let current = this.board[r][c];

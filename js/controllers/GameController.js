@@ -8,7 +8,7 @@ import { game } from "../main.js";
  *
  * @param {string} direction - La dirección del movimiento (puede ser una tecla de flecha o W, A, S, D).
  */
-export default function handleMove(direction) {
+const handleMove = (direction) => {
   let oldBoard = JSON.parse(JSON.stringify(game.board));
   let moved = false;
 
@@ -49,3 +49,5 @@ export default function handleMove(direction) {
     });
   }
 }
+
+export default handleMove;

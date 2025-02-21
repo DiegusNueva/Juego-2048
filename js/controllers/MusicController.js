@@ -7,7 +7,7 @@ let musicStarted = false;
  * La música se selecciona de una lista de canciones predefinidas y se reproduce en un bucle
  * con un volumen del 50%. Si la reproducción automática está bloqueada, se captura el error.
  */
-export default function playMusic() {
+const playMusic = () => {
   if (!musicStarted) {
     const randomSong = songs[Math.floor(Math.random() * songs.length)];
     bgMusic.src = randomSong;
@@ -16,4 +16,6 @@ export default function playMusic() {
     bgMusic.play().catch((error) => console.log("Autoplay bloqueado"));
     musicStarted = true;
   }
-}
+};
+
+export default playMusic;
