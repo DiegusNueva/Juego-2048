@@ -6,15 +6,19 @@ export default function handleMove(direction) {
 
   switch (direction) {
     case "ArrowRight":
+    case "d": // Tecla D
       moved = game.moveRight();
       break;
     case "ArrowLeft":
+    case "a": // Tecla A
       moved = game.moveLeft();
       break;
     case "ArrowUp":
+    case "w": // Tecla W
       moved = game.moveUp();
       break;
     case "ArrowDown":
+    case "s": // Tecla S
       moved = game.moveDown();
       break;
   }
@@ -32,10 +36,7 @@ export default function handleMove(direction) {
 
       if (game.isBoardFull() && !game.hasValidMoves()) {
         document.getElementById("gameCanvas").style.background = "#8b0000"; // Rojo oscuro
-        setTimeout(
-          () => alert("¡Juego terminado! No hay más movimientos."),
-          100
-        );
+        setTimeout(() => alert("¡Juego terminado! No hay más movimientos."), 100);
       }
     });
   }

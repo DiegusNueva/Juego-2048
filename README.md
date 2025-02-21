@@ -38,7 +38,7 @@ El juego utiliza:
 
 ## Características
 
-- Tablero de 3x3.
+- Tablero de 4x4.
 - Animaciones suaves para los movimientos de las fichas.
 - Sistema de puntuación.
 - Lógica de combinación de fichas y generación de nuevos números.
