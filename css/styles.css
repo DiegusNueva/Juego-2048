@@ -12,7 +12,6 @@ body {
     text-align: center;
     height: 100vh; /* Ocupar toda la pantalla */
     justify-content: center; /* Centrar verticalmente */
-    overflow: hidden; /* Evitar scroll */
 }
 
 canvas {
