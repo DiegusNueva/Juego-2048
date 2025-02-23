@@ -1,5 +1,10 @@
 import { SIZE, ctx, canvas, TILE_SIZE } from "../main.js";
 
+/**
+ * @author Diego Alonso Molina
+ * @GitHub https://github.com/DiegusNueva/Juego-2048
+ */
+
 export default class Game2048 {
   constructor() {
     this.board = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));

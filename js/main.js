@@ -2,6 +2,11 @@ import Game2048 from "./models/Game2048.js";
 import playMusic from "./controllers/MusicController.js";
 import handleMove from "./controllers/GameController.js";
 
+/**
+ * @author Diego Alonso Molina
+ * @GitHub https://github.com/DiegusNueva/Juego-2048
+ */
+
 // 🎵 Variables para la música de fondo
 const bgMusic = document.getElementById("bgMusic");
 let musicStarted = false;

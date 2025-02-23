@@ -1,5 +1,10 @@
 import { game } from "../main.js";
 
+/**
+ * @author Diego Alonso Molina
+ * @GitHub https://github.com/DiegusNueva/Juego-2048
+ */
+
 // Actualizar maxScore si es necesario
 export const updateMaxScore = () => {
   if (game.score > game.maxScore) {

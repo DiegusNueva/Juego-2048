@@ -1,5 +1,10 @@
 import { songs } from "../main.js";
 
+/**
+ * @author Diego Alonso Molina
+ * @GitHub https://github.com/DiegusNueva/Juego-2048
+ */
+
 let musicStarted = false;
 
 /**
