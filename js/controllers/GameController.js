@@ -2,7 +2,7 @@ import { game } from "../main.js";
 
 /**
  * @author Diego Alonso Molina
- * @GitHub https://github.com/DiegusNueva/Juego-2048
+ * @GitHub https://github.com/DiegusNueva/juego-2048-javascript
  */
 
 // Actualizar maxScore si es necesario

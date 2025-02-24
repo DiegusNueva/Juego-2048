@@ -4,7 +4,7 @@ import handleMove from "./controllers/GameController.js";
 
 /**
  * @author Diego Alonso Molina
- * @GitHub https://github.com/DiegusNueva/Juego-2048
+ * @GitHub https://github.com/DiegusNueva/juego-2048-javascript
  */
 
 // 🎵 Variables para la música de fondo
